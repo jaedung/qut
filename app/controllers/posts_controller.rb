@@ -19,4 +19,25 @@ class PostsController < ApplicationController
     post.save
   end
 
+  # 하나의 게시글을 볼 수 있는 액션
+  def show
+    @post = Post.find(params[:id])
+  end
+
+  # 하나의 게시글을 수정 할 수 있는 액션
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  # 하나의 게시글을 업데이트 하는 액션
+  def update
+
+    post = Post.find(params[:id])
+    post.title = params[:title]
+    post.content = params[:content]
+    post.save
+
+    redirect_to "/posts/" + post.id.to_s
+  end
+
 end
